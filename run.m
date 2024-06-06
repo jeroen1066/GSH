@@ -42,5 +42,6 @@ toc
 
 %% Save data
 
-DATE = datestr(now);
-save(['Results/data_' Model.name '_' num2str(SHbounds(1)) '_' num2str(SHbounds(2)) '_' DATE '.mat'],'data')
+%DATE = datetime("now");
+filename = ['Results/data_' Model.name '_' num2str(SHbounds(1)) '_' num2str(SHbounds(2)) '.mat'];
+save(filename,'data');

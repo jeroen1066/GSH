@@ -1,0 +1,386 @@
+PDS_VERSION_ID               = "PDS3"
+RECORD_TYPE                  = FIXED_LENGTH
+RECORD_BYTES                 = 122
+FILE_RECORDS                 = 4655    
+^SHADR_HEADER_TABLE          = ("GGMRO_095A_SHA.TAB",1)              
+^SHADR_COEFFICIENTS_TABLE    = ("GGMRO_095A_SHA.TAB",3)              
+INSTRUMENT_HOST_NAME         = "MARS RECONNAISSANCE ORBITER"
+TARGET_NAME                  = "MARS"
+INSTRUMENT_NAME              = "RADIO SCIENCE SUBSYSTEM"
+DATA_SET_ID                  = "MRO-M-RSS-5-SDP-V1.0"
+OBSERVATION_TYPE             = "GRAVITY FIELD"
+ORIGINAL_PRODUCT_ID          = "MRO95A"
+PRODUCT_ID                   = "GGMRO_095A_SHA.TAB"
+PRODUCT_RELEASE_DATE         = 2009-08-21
+DESCRIPTION                  = "
+The MROMGM0032 gravity was derived at GSFC from MRO, MGS, and Mars Odyssey
+tracking data by Frank Lemoine and Erwan Mazarico, at the NASA Goddard Space 
+Flight Center.
+
+The MROMGM0032 model is a solution for the Mars gravity field 
+to degree and order 95 in spherical harmonics. The model includes data from the
+Mars Reconnaissance Orbiter from near entry into the mapping 
+orbit (August 30 2006 through August 1 2008); data from Mars Global Surveyor 
+from both the Science Phasing Orbit (SPO) and Mapping; and data from Mars
+Odyssey. For MGS, all the available SPO data are included from March 27
+1998 to September 15, 1998; For MGS/Mapping data are included from
+February 1999 through the end of 2004.  The Mars Odyssey data were 
+processed by Erwan Mazarico (NASA GSFC NPP/ORAU) and included data
+through 2007.
+
+The reference system for this solution is described by Konopliv et al. (2006).
+Note that it is *NOT* the IAU system for Mars. The reference radius for
+this model is 3396.0 km. In addition, the GM and Mars k2 Love Number
+were adjusted with this solution: The new values from mromgm0032 are:
+GM (mromgm0032) = 0.4282837519531499E+14 m**3/s**2  
+  sigma GM = 0.238E+04 m**3/s**2
+K2 (mromgm0032) = 0.16695; 
+  Sigma K2 = 0.642E-02 
+The uncertainties for K2 and GM  are formal values
+  and should be scaled up by a factor of 3-4 in order to be more realistic.
+
+The arclengths for the data were: 1 day for Mars Odyssey; 3-6 days for Mars
+Global Surveyor, and 1-3 days for Mars Reconnaissance Orbiter. The Odyssey
+and MRO arcs explicitly avoid AMD (Angular Momentum desaturation) maneuvers
+by truncating the arcs before the maneuvers. For MGS, the maneuvers are
+modelled at the times given in the files supplied to the MGS Radio
+Science Team, and accelerations are estimated over the duration of
+the AMD events. For MRO, the (small forces files) are retrieved from NAIF,
+however they are used only to indicate when the arcs should be truncated.
+
+The processing for MGS, Odyssey and MRO excluded data in the vicinity
+of solar conjunction - generally for a minimum of a few weeks close
+to superior conjunction.
+
+The data used consist of X Band 2-way and 3-way Doppler 
+for all three spacecraft; compressed to 10 seconds for Odyssey 
+and MGS, and sampled at 1 Hz for MRO.
+Some range data are present, but these data do not have a large influence
+on the solution.
+MGS starting in 2000 had a lot of 1-way tracking via the Radio Science USO.
+These 1-way data are of high quality, and aside from the necessity to solve
+for frequency bias with the DSN on a routine basis, the RMS of fit is 
+very similiar to the 2-way data. The MRO ODF's (orbit data files)
+ also included 1-way data, and we have also included these 
+observations, albeit downweighted by  a factor
+of two with respect to the standard 2 & 3-way Doppler. 
+
+The nonconservative force modelling applied satellite-specific macromodels
+for all three satellites. The attitude of the spacecraft was defined using
+external attitude data, where the articulation of the solar arrays and
+the high gain antennae were accounted for.
+This source for this external attitude  attitude information was
+the MGS and MRO projects and NAIF  in the form of c-kernal files.
+Of course the motion and offset of the high gain antenna are accounted
+for in the measurement model for all three satellites.
+
+The a priori gravity models for this processing were predecessor models that
+included MGS and MRO and Odyssey data: mromgm0020g for MGS & MRO; mromgm0026
+for Odyssey. All these models were to 95x95 in spherical harmonics. 
+
+The forward modelling including the Mars K2 Love Number of 0.1764, the
+third body perturbations of Phobos and Deimos whose GM's were set to
+120000.0 m**3/S**2 for Deimos and 714492.0 m**3/s**2 for Phobos.
+The Jacobson (JPL/NAIF, Personal Communcation) set of Mars lunar ephemerides 
+were applied.
+
+The time variations of the C20 and C30 harmonics  were forward
+modelled. The values were derived from Lemoine (2006). The periodic
+terms were not readjusted in this solution.
+The time variations were modelled with the relation
+ A coswt + B sin wt, where t is defined as days elapsed
+ since Janary 01, 2000 00:00 UT.
+
+C20 Annual:   : (A,B) = (6.218466D-11-4.317147D-10)  
+C20 Semiannual: (A,B) = (1.530869D-09 1.104765D-09)
+
+C30 Annual:   :  (A,B) = (2.233298D-09 1.946259D-09)
+C30 Semiannual : (A,B) = (4.087752D-10 3.111002D-10)
+
+A kaula constraint was applied to obtain a solution, but the
+Kaula constraint was imposed only after degree 50.
+
+Analysis of the degree variances and the anomaly maps indicates
+this model can be used for geophysical interpretation through
+degree 80 with confidance.
+
+The full listing of the matrices included in the solution are as follows:
+
+MARS RECONNAISSANCE ORBITER
+Matrix        Name        Nobs       Description
+MATRIX  1:    MRO0609     968988   | mro 060830 to 060923
+MATRIX  2:    MRO0611     522507   | mro 061112 to 061201
+MATRIX  3:    MRO0612     876748   | mro 061201 to 070101
+MATRIX  4:    MRO0701     981128   | mro 070101 to 070131
+MATRIX  5:    MRO0702     877235   | mro 070131 to 070228
+MATRIX  6:    MRO0703     904673   | mro 070228 to 070331
+MATRIX  7:    MRO0704    1299371   | mro 070331 to 070430
+MATRIX  8:    MRO0705    1145929   | mro 070430 to 070530
+MATRIX  9:    MRO0706    1133003   | mro 070531 to 070629
+MATRIX 10:    M070629    1221716   | mro 070629 to 070731
+MATRIX 11:    M070731    1332132   | mro 070731 to 070901
+MATRIX 12:    M070901    1170872   | mro 070901 to 071001 
+MATRIX 13:    M071001    1174808   | mro 071001 to 071031
+MATRIX 14:    M071101     960448   | mro 071101 to 071130
+MATRIX 15:    M071201    1367984   | mro 071201 to 071230
+MATRIX 16:    M071231    1571494   | mro 071231 to 080201
+MATRIX 17:    M080201    1745185   | mro 080201 to 080301
+MATRIX 18:    M080302    1856335   | mro 080302 to 080401
+MATRIX 19:    M080401    1665689   | mro 080401 to 080501
+MATRIX 20:    M080501    1842255   | mro 080501 to 080602
+MATRIX 21:    M080602    1901659   | mro 080602 to 080702
+MATRIX 22:    M080702    1702378   | mro 080702 to 080801
+
+ODYSSSEY - Transition Orbits
+Matrix        Name        Nobs       Description
+MATRIX 23:    ODYCMT      154928   | ody
+
+MARS GLOBAL SURVEYOR (SPO and MAPPING)
+Matrix        Name        Nobs       Description
+MATRIX 24:    MGS098      109446   | mgs SPO 980327 - 980621   
+MATRIX 25:    MGS098       70958   | mgs SPO 980707 - 980915
+MATRIX 26:    MGSCMT      757504   | mgs mapping 1999
+MATRIX 27:    MGSCMT     1056129   | mgs mapping 2001
+MATRIX 28:    MGSCMT      802059   | mgs mapping 2002
+MATRIX 29:    MGSCMT      903499   | mgs mapping 2003
+MATRIX 30:    MGSCMT     1199889   | mgs mapping 2004
+
+ODYSSEY - (MAPPING)
+Matrix        Name        Nobs       Description
+MATRIX 31:    ODYCMT      415217   | ody 2002   
+MATRIX 32:    ODYCMT      801417   | ody 2003
+MATRIX 33:    ODYCMT     1093351   | ody 2004
+MATRIX 34:    ODYCMT      824898   | ody 2005
+MATRIX 35:    ODYCMT      917836   | ody 2006
+MATRIX 36:    ODYCMT      263717   | ody 2007
+         
+References
+----------
+
+The reference for this solution should be:
+
+Lemoine, F. G., Mazarico, E., Neumann, G., and D. Chinn
+New Solutions for the Mars Static and Temporal Gravity 
+Field using the Mars Reconnaissance Orbiter
+Eos Trans. AGU, 89(53), Fall Meet. Suppl., 
+Abstract P41B-1376, 2008.
+
+The other pertinent references are:
+
+Mars Reference System:
+----------------------
+A.S. Konopliv, C. F. Yoder, E. M. Standish, D.-N. Yuan, W. L. Sjogren,
+A global solution for the Mars static and seasonal gravity, Mars orientation,
+Phobos and Deimos masses, and Mars ephemeris, Icarus,  182,  pp. 23-50, 2006.
+
+Details about Mars Global Surveyor Data Processing at GSFC
+---------------------------------------------------------- 
+F. G. Lemoine, J.M. Forbes, S. Bruisma, D. Chinn,
+Thermospheric Studies with Mars Global Surveyor,
+AIAA/AAS Astrodynamics Specialist Conference, August 21-24, 
+2006, Keystone, Colorado, AIAA Paper 2006-6395 "
+
+START_TIME                   = 1998-03-27T08:00:00.000
+STOP_TIME                    = 2008-09-01T00:00:00.000
+PRODUCT_CREATION_TIME        = 2009-08-05T02:30:00.000
+PRODUCER_FULL_NAME           = "FRANK G. LEMOINE"
+PRODUCER_INSTITUTION_NAME    = "NASA GODDARD SPACEFLIGHT CENTER"
+PRODUCT_VERSION_TYPE         = "FINAL"
+PRODUCER_ID                  = "MRO GST"
+SOFTWARE_NAME                = "SOLVE 200502.03"
+
+
+OBJECT               = SHADR_HEADER_TABLE
+ROWS                       = 1
+COLUMNS                    = 8
+ROW_BYTES                  = 137
+ROW_SUFFIX_BYTES           = 107
+INTERCHANGE_FORMAT         = ASCII
+DESCRIPTION                = "The SHADR header includes
+descriptive information about the spherical harmonic 
+coefficients which follow in SHADR_COEFFICIENTS_TABLE.  
+The header consists of a single record of eight (delimited) 
+data columns requiring 137 bytes, a pad of 105 unspecified 
+ASCII characters, an ASCII carriage-return, and an ASCII 
+line-feed."
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE RADIUS"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 1
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "KILOMETER"
+    DESCRIPTION                  = "The assumed reference 
+    radius of the spherical planet."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "CONSTANT"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 25
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "For a gravity field model
+    the assumed gravitational constant GM in kilometers cubed
+    per seconds squared for the planet.  For a topography
+    model, set to 1."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "UNCERTAINTY IN CONSTANT"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 49
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "For a gravity field model
+    the uncertainty in the gravitational constant GM in kilometers
+    cubed per seconds squared for the planet.  For a topography
+    model, set to 0."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "DEGREE OF FIELD"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 73
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The degree of model field."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "ORDER OF FIELD"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 79
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The order of the model field."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "NORMALIZATION STATE"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 85
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The normalization indicator.
+    For gravity field:
+        0   coefficients are unnormalized
+        1   coefficients are normalized
+        2   other."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE LONGITUDE"
+    POSITIVE_LONGITUDE_DIRECTION = "EAST"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 91
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "DEGREE"
+    DESCRIPTION                  = "The reference longitude for
+    the spherical harmonic expansion; normally 0."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE LATITUDE"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 115
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "DEGREE"
+    DESCRIPTION                  = "The reference latitude for
+    the spherical harmonic expansion; normally 0."
+  END_OBJECT               = COLUMN
+
+END_OBJECT           = SHADR_HEADER_TABLE
+
+OBJECT               = SHADR_COEFFICIENTS_TABLE
+  ROWS                     = 4653
+  COLUMNS                  = 6
+  ROW_BYTES                = 107
+  ROW_SUFFIX_BYTES         = 15
+  INTERCHANGE_FORMAT       = ASCII
+  DESCRIPTION              = "The SHADR coefficients table 
+  contains the coefficients for the spherical harmonic model.
+  Each row in the table contains the degree index m, the
+  order index n, the coefficients Cmn and Smn, and the
+  uncertainties in Cmn and Smn.  The (delimited) data 
+  require 107 ASCII characters; these are followed by a pad 
+  of 13 unspecified ASCII characters, an ASCII carriage-
+  return, and an ASCII line-feed."
+
+  OBJECT                   = COLUMN
+    NAME                         = "COEFFICIENT DEGREE"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 1
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The degree index m of the
+    C and S coefficients in this record."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "COEFFICIENT ORDER"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 7
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The order index n of the
+    C and S coefficients in this record."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "C"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 13
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The coefficient Cmn
+    for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "S"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 37
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The coefficient Smn
+    for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "C UNCERTAINTY"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 61
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The uncertainty in the
+    coefficient Cmn for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "S UNCERTAINTY"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 85
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The uncertainty in the
+    coefficient Smn for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+END_OBJECT           = SHADR_COEFFICIENTS_TABLE
+
+END

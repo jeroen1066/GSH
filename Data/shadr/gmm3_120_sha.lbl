@@ -1,0 +1,281 @@
+PDS_VERSION_ID               = "PDS3"
+RECORD_TYPE                  = FIXED_LENGTH
+RECORD_BYTES                 = 122
+FILE_RECORDS                 = 7382
+FILE_NAME                    = "GMM3_120_SHA.TAB"
+^SHADR_HEADER_TABLE          = ("GMM3_120_SHA.TAB",1)
+^SHADR_COEFFICIENTS_TABLE    = ("GMM3_120_SHA.TAB",3)
+INSTRUMENT_HOST_NAME         = "MARS RECONNAISSANCE ORBITER"
+TARGET_NAME                  = "MARS"
+INSTRUMENT_NAME              = "RADIO SCIENCE SUBSYSTEM"
+DATA_SET_ID                  = "MRO-M-RSS-5-SDP-V1.0"
+OBSERVATION_TYPE             = "GRAVITY FIELD"
+ORIGINAL_PRODUCT_ID          = "GMM-3"
+PRODUCT_ID                   = "GMM3_120_SHA.TAB"
+PRODUCT_RELEASE_DATE         = 2016-01-21
+START_TIME                   = 1998-03-27T08:00:00.000
+STOP_TIME                    = 2015-03-30T04:00:00.000
+PRODUCT_CREATION_TIME        = 2016-01-21T17:00:00.000
+PRODUCER_FULL_NAME           = "ANTONIO GENOVA"
+PRODUCER_INSTITUTION_NAME    = "NASA/GODDARD SPACE FLIGHT CENTER"
+PRODUCT_VERSION_TYPE         = "FINAL"
+PRODUCER_ID                  = "MRO GST"
+SOFTWARE_NAME                = "VCE"
+
+DESCRIPTION                  = "
+  This file contains coefficients and related data for the Mars gravity 
+  field GMM-3 that was derived at the NASA Goddard Space Flight Center using
+  MRO, MGS, and Mars Odyssey radio tracking data.
+  
+  The GMM-3 model is a spherical harmonic solution of the static gravity 
+  field of Mars to degree and order 120. 
+
+  The radio tracking data included in this gravity solution are summarized  
+  as follows:
+
+    MGS Science Phasing Orbit 1 (SPO-1)      from  1998-03-27 to 1998-05-01
+    Science Phasing Orbit 2 (SPO-2)          from  1998-05-28 to 1998-09-17
+    Gravity Calibration Orbit (GCO)          from  1999-02-04 to 1999-02-19
+    Mapping Orbit (MAP)                      from  1999-02-20 to 2006-01-04
+
+    Mars Odyssey Transition Orbit (ODYT)     from  2002-01-11 to 2002-01-15
+    Mapping Orbit (ODYM)                     from  2002-02-20 to 2014-11-05
+
+    MRO Transition Orbit (MROT)              from  2006-08-30 to 2006-09-23
+    Mapping Orbit (MROM)                     from  2006-12-26 to 2015-03-30
+
+  The reference system for this solution is described by KONOPLIVETAL2006,
+  published in Icarus with the DOI number 10.1016/j.icarus.2005.12.025. 
+  Note that it is *NOT* the IAU system for Mars. The reference radius for 
+  this model is 3396.0 km. 
+
+  The modeling of the gravity field of Mars also includes the time-varying 
+  geopotential that accounts for the redistribution of mass associated with 
+  the CO2 seasonal cycle. The time variations were modeled with the relation
+  Ak coswt + Bk sin wt, where t is defined as days elapsed since 
+  January 01, 2000 00:00 UT. The cosine and sine amplitudes of the periodic
+  functions for C20, C30, C40, and C50 were adjusted with this solution. 
+  The time-dependent function of this gravity harmonic coefficients is 
+  described in detail by Genova et al. (2016). The retrieved Ak and Bk 
+  coefficients of these zonal harmonic coefficients are as follows:
+
+                annual               semi-annual            tri-annual
+                (k=1)                   (k=2)                 (k=3)
+            A              B        A            B       A           B
+
+  C20   2.39E-09      -0.83E-09  1.23E-09    0.73E-09  0.53E-09    0.46E-09
+   
+  C30   1.67E-09       2.35E-09  0.32E-09    0.21E-09  0.13E-09    0.15E-09
+
+  C40   0.85E-10      -1.56E-10  0.35E-10   -0.24E-10 -0.51E-10   -0.64E-10
+
+  C50   0.38E-09       1.30E-09  0.15E-09    0.42E-09  0.32E-09   -0.02E-09
+
+  In addition, the GM and Mars k2 Love Number were estimated with this 
+  solution.  The new values from GMM-3 are:
+
+  GM       = 0.4282837285418775E+05 km**3/s**2
+  sigma-GM = 0.1620281522676066E-04 km**3/s**2
+
+  k2       = 0.1697
+  sigma-k2 = 8.865151747129064E-04
+
+  The uncertainties for k2 and GM are formal values. We recommend a 
+  calibration factor of 3 for the uncertainties to obtain conservative 
+  error estimates.  The reference for the GMM-3 gravity field is 
+  GENOVAETAL2016, under review by Icarus." 
+
+OBJECT               = SHADR_HEADER_TABLE
+ROWS                       = 1
+COLUMNS                    = 8
+ROW_BYTES                  = 137
+ROW_SUFFIX_BYTES           = 107
+INTERCHANGE_FORMAT         = ASCII
+DESCRIPTION                = "The SHADR header includes
+descriptive information about the spherical harmonic 
+coefficients which follow in SHADR_COEFFICIENTS_TABLE.  
+The header consists of a single record of eight (delimited) 
+data columns requiring 137 bytes, a pad of 105 unspecified 
+ASCII characters, an ASCII carriage-return, and an ASCII 
+line-feed."
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE RADIUS"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 1
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "KILOMETER"
+    DESCRIPTION                  = "The assumed reference 
+    radius of the spherical planet."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "CONSTANT"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 25
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "For a gravity field model
+    the assumed gravitational constant GM in kilometers cubed
+    per seconds squared for the planet.  For a topography
+    model, set to 1."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "UNCERTAINTY IN CONSTANT"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 49
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "For a gravity field model
+    the uncertainty in the gravitational constant GM in kilometers
+    cubed per seconds squared for the planet.  For a topography
+    model, set to 0."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "DEGREE OF FIELD"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 73
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The degree of model field."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "ORDER OF FIELD"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 79
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The order of the model field."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "NORMALIZATION STATE"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 85
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The normalization indicator.
+    For gravity field:
+        0   coefficients are unnormalized
+        1   coefficients are normalized
+        2   other."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE LONGITUDE"
+    POSITIVE_LONGITUDE_DIRECTION = "EAST"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 91
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "DEGREE"
+    DESCRIPTION                  = "The reference longitude for
+    the spherical harmonic expansion; normally 0."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "REFERENCE LATITUDE"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 115
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "DEGREE"
+    DESCRIPTION                  = "The reference latitude for
+    the spherical harmonic expansion; normally 0."
+  END_OBJECT               = COLUMN
+
+END_OBJECT           = SHADR_HEADER_TABLE
+
+OBJECT               = SHADR_COEFFICIENTS_TABLE
+  ROWS                     = 7380
+  COLUMNS                  = 6
+  ROW_BYTES                = 107
+  ROW_SUFFIX_BYTES         = 15
+  INTERCHANGE_FORMAT       = ASCII
+  DESCRIPTION              = "The SHADR coefficients table 
+  contains the coefficients for the spherical harmonic model.
+  Each row in the table contains the degree index m, the
+  order index n, the coefficients Cmn and Smn, and the
+  uncertainties in Cmn and Smn.  The (delimited) data 
+  require 107 ASCII characters; these are followed by a pad 
+  of 13 unspecified ASCII characters, an ASCII carriage-
+  return, and an ASCII line-feed."
+
+  OBJECT                   = COLUMN
+    NAME                         = "COEFFICIENT DEGREE"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 1
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The degree index m of the
+    C and S coefficients in this record."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "COEFFICIENT ORDER"
+    DATA_TYPE                    = ASCII_INTEGER
+    START_BYTE                   = 7
+    BYTES                        = 5
+    FORMAT                       = "I5"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The order index n of the
+    C and S coefficients in this record."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "C"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 13
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The coefficient Cmn
+    for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "S"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 37
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The coefficient Smn
+    for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "C UNCERTAINTY"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 61
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The uncertainty in the
+    coefficient Cmn for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+  OBJECT                   = COLUMN
+    NAME                         = "S UNCERTAINTY"
+    DATA_TYPE                    = ASCII_REAL
+    START_BYTE                   = 85
+    BYTES                        = 23
+    FORMAT                       = "E23.16"
+    UNIT                         = "N/A"
+    DESCRIPTION                  = "The uncertainty in the
+    coefficient Smn for this spherical harmonic model."
+  END_OBJECT               = COLUMN
+
+END_OBJECT           = SHADR_COEFFICIENTS_TABLE
+
+END
