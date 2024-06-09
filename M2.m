@@ -7,7 +7,7 @@ addpath([HOME '/Data']);
 addpath([HOME '/Tools']);
 
 % Import data
-V = importdata('jgmro_120f_sha.tab.txt');
+V = importdata('Data/shadr/jgmro_120f_sha.tab');
 header = V(1,:);
 V = [0 0 1 0; V(2:end,1:4)];
 % If we only want perturbations
@@ -30,7 +30,7 @@ Model.Re = header(1)*1000;
 %[data] = model_SH_synthesis(lonLim,latLim,height,SHbounds,V,Model);
 
 % Read in the topography file
-filename = 'megt90n000cb.img';
+filename = 'Data/meg004/megt90n000cb.img';
 resolution = 4;
 f = fopen(filename,'r','ieee-be');
 Topo = fread(f,[360*resolution Inf],'int16')';
@@ -70,7 +70,7 @@ disp(min(flip(T_crust(:))));
 disp(max(flip(T_crust(:))));
 
 flipped_T_crust = flip(T_crust);
-writematrix(flipped_T_crust, 'C:\Users\Varun\OneDrive - Delft University of Technology\Desktop\MSc AE\Courses\PPI\PhysicsPlanetaryInteriors\A2\airy_crustal_thickness.txt');
+writematrix(flipped_T_crust, 'Results\airy_crustal_thickness.txt');
 
 % Limit the ranges for elevation and crustal thickness
 elevation_min = -5; % km
@@ -99,7 +99,7 @@ set(gca, 'FontSize', 14)
 axis equal
 title('Topography', 'FontSize', 14)
 ax = gca;
-exportgraphics(ax,'C:\Users\Varun\OneDrive - Delft University of Technology\Desktop\MSc AE\Courses\PPI\PhysicsPlanetaryInteriors\A2\figs\topo.png','Resolution',300)
+exportgraphics(ax,'Results\figs\topo.png','Resolution',300)
 
 % Plot the isostatic topography
 figure
@@ -115,7 +115,7 @@ set(gca, 'FontSize', 14)
 axis equal
 title('Airy Isostasy Model', 'FontSize', 14)
 ax = gca;
-exportgraphics(ax,'C:\Users\Varun\OneDrive - Delft University of Technology\Desktop\MSc AE\Courses\PPI\PhysicsPlanetaryInteriors\A2\figs\airy.png','Resolution',300)
+exportgraphics(ax,'Results\figs\airy.png','Resolution',300)
 
 figure; % Open a new figure window
 histogram(flip(T_crust), 50, 'Normalization', 'probability', 'FaceColor', '#0072BD'); % Create the histogram with normalization
@@ -134,7 +134,7 @@ set(gca, 'YTickLabel', yt_percentage); % Set the y-tick labels
 % Plot the isostatic root (r)
 figure
 surf(lon, lat, flip(r)/1000, 'EdgeColor', 'none')
-colormap(default)
+colormap default
 colorbar
 caxis([-elevation_max elevation_max])
 cb = colorbar;
@@ -146,7 +146,7 @@ zlabel('Isostatic Root [km]', 'FontSize', 14)
 set(gca, 'FontSize', 14)
 axis equal
 ax = gca;
-exportgraphics(ax,'C:\Users\Varun\OneDrive - Delft University of Technology\Desktop\MSc AE\Courses\PPI\PhysicsPlanetaryInteriors\A2\figs\isostatic_root.png','Resolution',300)
+exportgraphics(ax,'Results\figs\isostatic_root.png','Resolution',300)
 
 % Save the results
-save('Results/data_Mars.mat','data','T_crust')
+save('Results/data_Mars_m2.mat','data','T_crust')

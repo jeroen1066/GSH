@@ -31,6 +31,7 @@ SHbounds =  [0 120]; % Truncation settings: lower limit, upper limit SH-coeffici
 tic;
 [V] = model_SH_analysis(Model);
 toc
+V(1,:)=[0,0,1,0];
 
 save(['Results/' Model.name '.mat'],'V')
 
@@ -46,6 +47,40 @@ sphericalharmonics = importdata("Data\shadr\gmm3_120_sha.tab");
 sphericalharmonics(1,:) = [0,0,1,0,0,0,0,0];
 sphericalharmonics(:,5:8) = [];
 
+sphericalharmonics_ordered = sortrows(sphericalharmonics,2);
+sizefile = 8381;
+a = 1:sizefile;
+
+i = 1;
+j = 1;
+
+variance_model = zeros(121);
+variance_accurate = zeros(121);
+
+%%
+for i = 1:7381
+    j = 0;
+    order = V(i,1);
+    variance_model(order+1) = variance_model(order+1) + V(i,3)^2+V(i,4)^2 ;
+    variance_accurate(order+1) = variance_accurate(order+1) + sphericalharmonics_ordered(i,3)^2 + sphericalharmonics_ordered(i,4)^2;
+end
+
+orders = 0:120;
+
+
+plot(orders,variance_model)
+xlabel('order')
+ylabel('Variance')
+yscale log
+
+title('Spectral variance of the M1 model compared to the reference')
+hold("on")
+plot(orders,variance_accurate)
+
+
+hold("off")
+legend('Model','Reference')
+%% 
 
 
 tic;

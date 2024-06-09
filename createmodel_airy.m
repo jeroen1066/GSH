@@ -14,6 +14,11 @@ filename = [prefix 'megr90n000cb.img'];
 f = fopen(filename,'r','ieee-be');
 el1 = fread(f,[360*resolution Inf],'int16')';
 
+
+
+airyname = 'Results/airy_crustal_thickness.txt';
+airy = readmatrix(airyname);
+
 dpp = 1/resolution;
 numlat = resolution * 180;
 numlong = resolution * 360;
@@ -21,10 +26,10 @@ longitude = linspace(-90+dpp/2,90-dpp/2,numlat);
 lattitude = linspace(dpp/2,360-dpp/2,numlong);
 
 edge0 = 0;
-edge1 = -50;%km
-edge2 = -1400;%km
+edge1 = -1500;%km
+edge2 = -1896;%km
 
-density1 = 2.900;%ton/m3
+density1 = 2.9;%ton/m3
 density2 = 3.500;%ton/m3
 
 edgematrix1 = zeros(numlat*numlong,3);
@@ -46,23 +51,25 @@ for i = 1:numlat
         densitymatrix2((i-1)*numlong+j,1)=lattitude(j);
         densitymatrix2((i-1)*numlong+j,2)=longitude(i);
         edgematrix1((i-1)*numlong+j,3)=el1(i,j)/1000;
+        edgematrix2((i-1)*numlong+j,3)=-airy(721-i,1441-j);
+        edgematrix3((i-1)*numlong+j,3)=-1500-el1(i,j)/1000+airy(721-i,1441-j);
     end
 end
 
 %edgematrix1(:,3) = 0;
-edgematrix2(:,3) = edge1;
-edgematrix3(:,3) = edge2;
+%edgematrix2(:,3) = edge1;
+%edgematrix3(:,3) = edge2;
 densitymatrix1(:,3) = density1;
 densitymatrix2(:,3) = density2;
 
-filename = ['Data/mars1.bd1.txt'];
+filename = ['Data/mars1_airy.bd1.txt'];
 writematrix(edgematrix1,filename,'Delimiter','tab');
-filename = ['Data/mars1.bd2.txt'];
+filename = ['Data/mars1_airy.bd2.txt'];
 writematrix(edgematrix2,filename,'Delimiter','tab');
-filename = ['Data/mars1.bd3.txt'];
+filename = ['Data/mars1_airy.bd3.txt'];
 writematrix(edgematrix3,filename,'Delimiter','tab');
 
-filename = ['Data/mars1.rho1.txt'];
+filename = ['Data/mars1_airy.rho1.txt'];
 writematrix(densitymatrix1,filename,'Delimiter','tab');
-filename = ['Data/mars1.rho2.txt'];
+filename = ['Data/mars1_airy.rho2.txt'];
 writematrix(densitymatrix2,filename,'Delimiter','tab');
